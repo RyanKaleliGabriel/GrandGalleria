@@ -1230,3 +1230,7 @@ h6 {
 .all > td{
   padding: 20px;
 }
+
+table th{
+  color: #F9C5D5 !important;
+}

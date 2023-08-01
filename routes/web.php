@@ -18,5 +18,14 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('orders', [Grandgalleria::class, 'allorders'])->name('orders');
+Route::get('orders', [Grandgalleria::class, 'orders'])->name('orders');
+
+Route::get('customers', [Grandgalleria::class, 'customers'])->name('customers');
+
+Route::get('products', [Grandgalleria::class, 'products'])->name('products');
+Route::get('categories', [Grandgalleria::class, 'categories'])->name('categories');
+
+Route::get('transactions', [Grandgalleria::class, 'transactions'])->name('transactions');
+
+
 

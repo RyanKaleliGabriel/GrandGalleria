@@ -160,27 +160,10 @@
                 <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 
                     <li>
-                        <a style="color:#F9C5D5;" href="">
-                            <i style="color:#F9C5D5;" class="bi bi-circle"></i><span>List</span>
+                        <a style="color:#F9C5D5;" href="{{route('orders')}}">
+                            <i style="color:#F9C5D5;" class="bi bi-circle"></i><span>All</span>
                         </a>
                     </li>
-                    <li>
-                        <a style="color:#F9C5D5;" href="">
-                            <i style="color:#F9C5D5;" class="bi bi-circle"></i><span>Pending</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a style="color:#F9C5D5;" href="">
-                            <i style="color:#F9C5D5;" class="bi bi-circle"></i><span>Completed</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a style="color:#F9C5D5;" href="">
-                            <i style="color:#F9C5D5;" class="bi bi-circle"></i><span>Cancelled</span>
-                        </a>
-                    </li>
-
-
                 </ul>
             </li><!-- End Components Nav -->
 
@@ -190,8 +173,8 @@
                 </a>
                 <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a style="color:#F9C5D5;" href="">
-                            <i style="color:#F9C5D5;" class="bi bi-circle"></i><span>List</span>
+                        <a style="color:#F9C5D5;" href="{{route('customers')}}">
+                            <i style="color:#F9C5D5;" class="bi bi-circle"></i><span>All</span>
                         </a>
                     </li>
                 </ul>
@@ -203,13 +186,13 @@
                 </a>
                 <ul id="table-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a style="color:#F9C5D5;" href="">
-                            <i class="bi bi-circle"></i><span>List</span>
+                        <a style="color:#F9C5D5;" href="{{route('products')}}">
+                            <i class="bi bi-circle"></i><span>All</span>
                         </a>
                     </li>
 
                     <li>
-                        <a style="color:#F9C5D5;" href="">
+                        <a style="color:#F9C5D5;" href="{{route('categories')}}">
                             <i class="bi bi-circle"></i><span>Category</span>
                         </a>
                     </li>
@@ -221,14 +204,8 @@
                 </a>
                 <ul id="t-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a style="color:#F9C5D5;" href="">
-                            <i class="bi bi-circle"></i><span>List</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a style="color:#F9C5D5;" href="">
-                            <i class="bi bi-circle"></i><span>Statements</span>
+                        <a style="color:#F9C5D5;" href="{{route('transactions')}}">
+                            <i class="bi bi-circle"></i><span>All</span>
                         </a>
                     </li>
                 </ul>

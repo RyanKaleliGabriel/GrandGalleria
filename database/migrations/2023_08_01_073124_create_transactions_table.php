@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('customer_id');
             $table->string('status');
             $table->string('order_id');
+            $table->string('type');
             $table->boolean('active')->default(true);
         });
     }
