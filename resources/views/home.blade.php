@@ -98,19 +98,102 @@
 
             <div class="col-lg-12">
                 <!-- Reports -->
-                <div class="col-lg-8">
-                    <div class="card" style="background-color: #000000;">
-                        <h5 class="card-title" style="margin-left: 20px; color:#F2789F">Devices per Category</h5>
-                        <div class="card-body" style="height: 300px;">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="card" style="background-color: #000000;">
+                            <div class="card-body">
+                                <h5 class="card-title"  style="margin-left: 20px; color:#F2789F">Bar Chart</h5>
+
+                                <!-- Bar Chart -->
+                                <div id="barChart" style="min-height: 400px;" class="echart"></div>
+
+                                <script>
+                                    document.addEventListener("DOMContentLoaded", () => {
+                                        echarts.init(document.querySelector("#barChart")).setOption({
+                                            xAxis: {
+                                                type: 'category',
+                                                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                                            },
+                                            yAxis: {
+                                                type: 'value'
+                                            },
+                                            series: [{
+                                                data: [120, 200, 150, 80, 70, 110, 130],
+                                                type: 'bar'
+                                            }]
+                                        });
+                                    });
+                                </script>
+                                <!-- End Bar Chart -->
+                            </div>
                         </div>
                     </div>
-                </div><!-- End Reports -->
 
-                <!-- <div class="card" style="background-color: #000000;">
-                    <h5 class="card-title" style="margin-left: 20px; color:#F2789F">Students in Each Department</h5>
-                    <div class="card-body pb-0">
+                    <div class="col-lg-4">
+                        <div class="card" style="background-color: #000000;">
+                            <div class="card-body">
+                                <h5 class="card-title" style="margin-left: 20px; color:#F2789F">Radar Chart</h5>
+
+                                <!-- Radar Chart -->
+                                <div id="radarChart" style="min-height: 400px;" class="echart"></div>
+
+                                <script>
+                                    document.addEventListener("DOMContentLoaded", () => {
+                                        echarts.init(document.querySelector("#radarChart")).setOption({
+                                            legend: {
+                                                data: ['Allocated Budget', 'Actual Spending']
+                                            },
+                                            radar: {
+                                                // shape: 'circle',
+                                                indicator: [{
+                                                        name: 'Sales',
+                                                        max: 6500
+                                                    },
+                                                    {
+                                                        name: 'Administration',
+                                                        max: 16000
+                                                    },
+                                                    {
+                                                        name: 'Information Technology',
+                                                        max: 30000
+                                                    },
+                                                    {
+                                                        name: 'Customer Support',
+                                                        max: 38000
+                                                    },
+                                                    {
+                                                        name: 'Development',
+                                                        max: 52000
+                                                    },
+                                                    {
+                                                        name: 'Marketing',
+                                                        max: 25000
+                                                    }
+                                                ]
+                                            },
+                                            series: [{
+                                                name: 'Budget vs spending',
+                                                type: 'radar',
+                                                data: [{
+                                                        value: [4200, 3000, 20000, 35000, 50000, 18000],
+                                                        name: 'Allocated Budget'
+                                                    },
+                                                    {
+                                                        value: [5000, 14000, 28000, 26000, 42000, 21000],
+                                                        name: 'Actual Spending'
+                                                    }
+                                                ]
+                                            }]
+                                        });
+                                    });
+                                </script>
+                                <!-- End Radar Chart -->
+
+                            </div>
+                        </div>
                     </div>
-                </div> -->
+
+                </div>
             </div>
     </section>
 

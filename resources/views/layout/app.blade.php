@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title style="font-family: 'Satisfy', cursive;" >GrandGalleria</title>
+    <title style="font-family: 'Satisfy', cursive;">GrandGalleria</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -61,26 +61,80 @@
                         <i class="bi bi-search"></i>
                     </a>
                 </li><!-- End Search Icon-->
+                <li class="nav-item dropdown">
 
-                <li class="nav-item dropdown pe-3">
+                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown" style="color:#F9C5D5;">
+                        <i class="bi bi-bell"></i>
+                        <span class="badge bg-primary badge-number" style="color:white;">4</span>
+                    </a><!-- End Notification Icon -->
 
-                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-
-                        <span style="color:#F2789F "class="d-none d-md-block dropdown-toggle ps-2">Welcome</span>
-
-                    </a><!-- End Profile Iamge Icon -->
-
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications" style="background-color: #000000; color:#F9C5D5;">
                         <li class="dropdown-header">
-                            <h6></h6>
-                            <span>System Administrator</span>
+                            You have 4 new notifications
+                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
+
+                        <li class="notification-item">
+                            <i class="bi bi-exclamation-circle text-warning"></i>
+                            <div>
+                                <h4>Lorem Ipsum</h4>
+                                <p>Quae dolorem earum veritatis oditseno</p>
+                                <p>30 min. ago</p>
+                            </div>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="dropdown-footer">
+                            <a href="#">Show all notifications</a>
+                        </li>
+                    </ul><!-- End Notification Dropdown Items -->
+
+                </li><!-- End Notification Nav -->
+
+
+
+
+
+
+                <li class="nav-item dropdown pe-3">
+
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                        <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                    </a><!-- End Profile Iamge Icon -->
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile" style="background-color: #000000; color:#F9C5D5;">
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html" style="color:#F9C5D5;">
+                                <i class="bi bi-person"></i>
+                                <span>Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="#" style="color:#F9C5D5;">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Sign Out</span>
+                            </a>
+                        </li>
+
                     </ul><!-- End Profile Dropdown Items -->
                 </li><!-- End Profile Nav -->
             </ul>
+
+
+
+
         </nav><!-- End Icons Navigation -->
     </header><!-- End Header -->
 
@@ -91,8 +145,8 @@
 
         <ul class="sidebar-nav" id="sidebar-nav">
             <li class="nav-item">
-                <a style="background-color: #000000; color:#F9C5D5;" class="nav-link " href="">
-                    <i style="color:#F9C5D5;"  class="bi bi-grid"></i>
+                <a style="background-color: #000000; color:#F9C5D5;" class="nav-link " href="{{route('home')}}">
+                    <i style="color:#F9C5D5;" class="bi bi-grid"></i>
                     <span>Dashboard</span>
                 </a>
             </li><!-- End Dashboard Nav -->
@@ -100,47 +154,81 @@
             <li class="nav-heading">Main Operations</li>
 
             <li class="nav-item">
-                <a style="background-color: #000000; color:#F9C5D5;"  class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-                    <i style="color:#F9C5D5;" class="bi bi-power"></i><span>Devices</span><i class="bi bi-chevron-down ms-auto"></i>
+                <a style="background-color: #000000; color:#F9C5D5;" class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                    <i style="color:#F9C5D5;" class="bi bi-cart"></i><span>Orders</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 
                     <li>
-                        <a style="color:#F9C5D5;"  href="">
-                            <i style="color:#F9C5D5;"  class="bi bi-circle"></i><span>Category</span>
+                        <a style="color:#F9C5D5;" href="">
+                            <i style="color:#F9C5D5;" class="bi bi-circle"></i><span>List</span>
                         </a>
                     </li>
                     <li>
-                        <a style="color:#F9C5D5;"  href="">
-                            <i style="color:#F9C5D5;"  class="bi bi-circle"></i><span>Manage</span>
+                        <a style="color:#F9C5D5;" href="">
+                            <i style="color:#F9C5D5;" class="bi bi-circle"></i><span>Pending</span>
                         </a>
                     </li>
+                    <li>
+                        <a style="color:#F9C5D5;" href="">
+                            <i style="color:#F9C5D5;" class="bi bi-circle"></i><span>Completed</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a style="color:#F9C5D5;" href="">
+                            <i style="color:#F9C5D5;" class="bi bi-circle"></i><span>Cancelled</span>
+                        </a>
+                    </li>
+
 
                 </ul>
             </li><!-- End Components Nav -->
 
-            <li  class="nav-item">
-                <a style="background-color: #000000; color:#F9C5D5;"  class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-                    <i style="color:#F9C5D5;"  class="bi bi-people"></i><span>Students</span><i class="bi bi-chevron-down ms-auto"></i>
+            <li class="nav-item">
+                <a style="background-color: #000000; color:#F9C5D5;" class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+                    <i style="color:#F9C5D5;" class="bi bi-people"></i><span>Customers</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a style="color:#F9C5D5;"  href="">
-                            <i style="color:#F9C5D5;"  class="bi bi-circle"></i><span>Manage</span>
+                        <a style="color:#F9C5D5;" href="">
+                            <i style="color:#F9C5D5;" class="bi bi-circle"></i><span>List</span>
                         </a>
                     </li>
                 </ul>
             </li><!-- End Forms Nav -->
 
-            <li  class="nav-item">
-                <a style="background-color: #000000;color:#F9C5D5;"  class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-                    <i style="color:#F9C5D5;"  class="bi bi-diagram-3"></i><span>Department</span><i class="bi bi-chevron-down ms-auto"></i>
+            <li class="nav-item">
+                <a style="background-color: #000000;color:#F9C5D5;" class="nav-link collapsed" data-bs-target="#table-nav" data-bs-toggle="collapse" href="#">
+                    <i style="color:#F9C5D5;" class="bi bi-view-stacked"></i><span>Products</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <ul id="table-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a style="color:#F9C5D5;" href="">
+                            <i class="bi bi-circle"></i><span>List</span>
+                        </a>
+                    </li>
 
                     <li>
                         <a style="color:#F9C5D5;" href="">
-                            <i class="bi bi-circle"></i><span >Manage</span>
+                            <i class="bi bi-circle"></i><span>Category</span>
+                        </a>
+                    </li>
+                </ul>
+            </li><!-- End Tables Nav -->
+            <li class="nav-item">
+                <a style="background-color: #000000;color:#F9C5D5;" class="nav-link collapsed" data-bs-target="#t-nav" data-bs-toggle="collapse" href="#">
+                    <i style="color:#F9C5D5;" class="bi bi-cash"></i><span>Transactions</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="t-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a style="color:#F9C5D5;" href="">
+                            <i class="bi bi-circle"></i><span>List</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a style="color:#F9C5D5;" href="">
+                            <i class="bi bi-circle"></i><span>Statements</span>
                         </a>
                     </li>
                 </ul>
@@ -149,8 +237,8 @@
             <li class="nav-heading">Administrator</li>
 
             <li class="nav-item">
-                <a style="background-color: #000000; color:#F9C5D5;"  class="nav-link collapsed" href="">
-                    <i style="color:#F9C5D5;"  class="bi bi-box-arrow-in-right"></i>
+                <a style="background-color: #000000; color:#F9C5D5;" class="nav-link collapsed" href="">
+                    <i style="color:#F9C5D5;" class="bi bi-box-arrow-in-right"></i>
                     <span>Login</span>
                 </a>
             </li><!-- End Profile Page Nav -->
@@ -158,8 +246,8 @@
             <li class="nav-item">
                 <form action="" method="post">
 
-                    <button style="background-color: #000000; color:#F9C5D5;"  type="submit" class="nav-link collapsed" href="">
-                        <i style="color:#F9C5D5;"  class="bi bi-box-arrow-right"></i>
+                    <button style="background-color: #000000; color:#F9C5D5;" type="submit" class="nav-link collapsed" href="">
+                        <i style="color:#F9C5D5;" class="bi bi-box-arrow-right"></i>
                         <span>Logout</span>
                     </button>
                 </form>
@@ -174,10 +262,10 @@
 
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
-        <div style="color:#F2789F"  class="copyright">
+        <div style="color:#F2789F" class="copyright">
             &copy; Copyright <strong><span>Ryan</span></strong>. All Rights Reserved
         </div>
-        <div style="color:#F2789F"  class="credits">
+        <div style="color:#F2789F" class="credits">
             <!-- All the links in the footer should remain intact. -->
             <!-- You can delete the links only if you purchased the pro version. -->
             <!-- Licensing information: https://bootstrapmade.com/license/ -->
