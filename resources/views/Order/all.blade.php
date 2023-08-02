@@ -21,7 +21,7 @@
             <div class="col-lg-12">
                 <div class="card" style="background-color: #000000;">
                     <div class="card-body">
-                        <h5 class="card-title"  style="color:#F2789F">List of all orders</h5>
+                        <h5 class="card-title"  style="color:#F9C5D5">List of all orders</h5>
                         <!-- Table with stripped rows -->
                         <table class="table datatable" >
                             <thead>

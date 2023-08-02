@@ -21,7 +21,7 @@
                 <div class="card" style="background-color: #000000;">
                     <div class="card-body">
                         <h5 class="card-title" style="color:#F2789F">List of all product categories</h5>
-                        <a href="" style="float: right;">
+                        <a href="{{route('addcategory')}}" style="float: right;">
                             <button type="button" class="btn btn-outline-light">
                                 Add New
                                 <i class="bi bi-plus"></i>

@@ -21,7 +21,7 @@
             <div class="col-lg-12">
                 <div class="card" style="background-color: #000000;">
                     <div class="card-body">
-                        <h5 class="card-title" style="color:#F2789F">All transactions</h5>
+                        <h5 class="card-title" style="color:#F9C5D5">All transactions</h5>
 
                         <!-- Table with stripped rows -->
                         <table class="table datatable">
@@ -41,10 +41,10 @@
                                 @foreach($transactions as $transaction)
                                 <tr>
                                     <th scope="row">{{$transaction->id}}</th>
-                                    <td>{{$transaction->name}}</td>
-                                    <td>{{$transaction->price}}</td>
-                                    <td>{{$transaction->quantity}}</td>
-                                    <td>{{$transaction->category}}</td>
+                                    <td>{{$transaction->order->number}}</td>
+                                    <td>{{$transaction->customer->name}}</td>
+                                    <td>{{$transaction->status}}</td>
+                                    <td>{{$transaction->type}}</td>
                                     <td>
                                         <a href="">
                                             <button type="button" class="btn btn-warning">

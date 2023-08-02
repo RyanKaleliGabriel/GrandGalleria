@@ -21,9 +21,13 @@ Route::get('/', function () {
 Route::get('orders', [Grandgalleria::class, 'orders'])->name('orders');
 
 Route::get('customers', [Grandgalleria::class, 'customers'])->name('customers');
+Route::get('addcustomer', [Grandgalleria::class, 'addcustomer'])->name('addcustomer');
+Route::post('storecustomer', [Grandgalleria::class, 'storecustomer'])->name('storecustomer');
 
 Route::get('products', [Grandgalleria::class, 'products'])->name('products');
+Route::get('addproduct', [Grandgalleria::class, 'addproduct'])->name('addproduct');
 Route::get('categories', [Grandgalleria::class, 'categories'])->name('categories');
+Route::get('addcategory', [Grandgalleria::class, 'addcategory'])->name('addcategory');
 
 Route::get('transactions', [Grandgalleria::class, 'transactions'])->name('transactions');
 
