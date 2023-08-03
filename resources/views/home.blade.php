@@ -32,7 +32,7 @@
                                         <i style="color: white;" class="bi bi-cash"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6 style="color:#F2789F">1234</h6>
+                                        <h6 style="color:#F2789F">{{$transactions}}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -49,7 +49,7 @@
                                         <i style="color:white" class="bi bi-cart"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6 style="color:#F2789F">24</h6>
+                                        <h6 style="color:#F2789F">{{$orders}}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@
                                         <i style="color: white;" class="bi bi-view-stacked"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6 style="color:#F2789F">34</h6>
+                                        <h6 style="color:#F2789F">{{$products}}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -83,7 +83,7 @@
                                         <i style="color: white;" class="bi bi-people"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6 style="color:#F2789F">54</h6>
+                                        <h6 style="color:#F2789F">{{$customers}}</h6>
                                     </div>
                                 </div>
                             </div>

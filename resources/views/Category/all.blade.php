@@ -30,12 +30,11 @@
                         <br>
                         <br>
                         <!-- Table with stripped rows -->
-                        <table class="table datatable">
+                        <table class="datatable striped-table" style="background-color: #000000;">
                             <thead>
                                 <tr>
                                     <th scope="col">Category Number</th>
                                     <th scope="col">Product Name</th>
-                                    <th scope="col">Action</th>
                                     <th scope="col">Action</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -45,13 +44,6 @@
                                 <tr>
                                     <th scope="row">{{$category->id}}</th>
                                     <td>{{$category->name}}</td>
-                                    <td>
-                                        <a href="">
-                                            <button type="button" class="btn btn-warning">
-                                                <i class="bi bi-info"></i>
-                                            </button>
-                                        </a>
-                                    </td>
                                     <td>
                                         <a href="">
                                             <button type="button" class="btn btn-info">
@@ -65,6 +57,7 @@
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger confirm"><i class="bi bi-trash"></i></button>
                                         </form>
+
                                         <!-- <script src="sweetalert2.all.min.js"></script>
                                         <script>
                                             // Get all elements with the 'confirm' class

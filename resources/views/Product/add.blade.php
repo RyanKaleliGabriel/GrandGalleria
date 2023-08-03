@@ -68,7 +68,7 @@
                                 if (form.checkValidity()) {
                                     // Configure SweetAlert alert
                                     Swal.fire({
-                                        title: 'Proceed to add product?',
+                                        title: 'Proceed to add new product?',
                                         cancelButtonText: 'Cancel',
                                         icon: 'question',
                                         background: 'black',

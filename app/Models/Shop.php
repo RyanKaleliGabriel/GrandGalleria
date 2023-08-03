@@ -5,15 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Shop extends Model
+class Shop extends Authenticatable
 {
     use HasFactory;
+
+    protected $table = 'shops';
 
     protected $fillable =
     [
         'name',
         'image',
+        'email',
+        'password',
         'description'
     ];
 
@@ -32,5 +37,13 @@ class Shop extends Model
     public function order() :HasMany
     {
         return $this->hasMany(Order::class);
+    }
+    public function category() :HasMany
+    {
+        return $this->hasMany(Category::class);
+    }
+    public function notification(): HasMany
+    {
+        return $this->hasMany(Notification::class);
     }
 }

@@ -23,7 +23,7 @@
                         <h5 class="card-title" style="color:#F9C5D5">Add new Product Category</h5>
 
                         <!-- Multi Columns Form -->
-                        <form class="row g-3" action="" method="post" id="categoryForm">
+                        <form class="row g-3" action="{{route('storecategory')}}" method="post" id="categoryForm">
                             @csrf
                             <div class="col-md-12">
                                 <input placeholder="Enter category name..." style="background-color: lightgrey;" type="text" name="name" class="form-control" id="inputName5">

@@ -102,7 +102,9 @@
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                        @if(Auth::check())
+                        <img src="{{ url('shop_images/'.Auth::user()->image) }}" alt="Profile" class="rounded-circle">
+                        @endif
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile" style="background-color: #000000; color:#F9C5D5;">
@@ -210,25 +212,18 @@
                 </ul>
             </li><!-- End Tables Nav -->
 
+            @if(Auth::check())
             <li class="nav-heading">Administrator</li>
-
-            <li class="nav-item">
-                <a style="background-color: #000000; color:#F9C5D5;" class="nav-link collapsed" href="">
-                    <i style="color:#F9C5D5;" class="bi bi-box-arrow-in-right"></i>
-                    <span>Login</span>
-                </a>
-            </li><!-- End Profile Page Nav -->
-
             <li class="nav-item">
                 <form action="" method="post">
 
                     <button style="background-color: #000000; color:#F9C5D5;" type="submit" class="nav-link collapsed" href="">
                         <i style="color:#F9C5D5;" class="bi bi-box-arrow-right"></i>
-                        <span>Logout</span>
+                        <span>Sign out</span>
                     </button>
                 </form>
             </li><!-- End Profile Page Nav -->
-
+            @endif
         </ul>
 
     </aside><!-- End Sidebar-->

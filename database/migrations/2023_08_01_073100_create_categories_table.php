@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name');
             $table->boolean('active')->default(true);
+            $table->string('shop_id');
         });
     }
 
