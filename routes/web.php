@@ -28,6 +28,7 @@ Route::post('storecustomer', [Grandgalleria::class, 'storecustomer'])->name('sto
 
 Route::get('products', [Grandgalleria::class, 'products'])->name('products');
 Route::get('addproduct', [Grandgalleria::class, 'addproduct'])->name('addproduct');
+Route::post('storeproduct', [Grandgalleria::class, 'storeproduct'])->name('storeproduct');
 
 Route::get('categories', [Grandgalleria::class, 'categories'])->name('categories');
 Route::get('addcategory', [Grandgalleria::class, 'addcategory'])->name('addcategory');

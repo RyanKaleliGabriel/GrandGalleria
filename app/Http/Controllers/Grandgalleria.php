@@ -64,7 +64,7 @@ class Grandgalleria extends Controller
 
     public function addproduct()
     {
-        $categories = Category::where('active', true);
+        $categories = Category::where('active', true)->get();
         return view('Product.add', compact('categories'));
     }
 
@@ -91,14 +91,16 @@ class Grandgalleria extends Controller
     public function storecustomer(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required'
+            'name' => 'required',
+            'shop_id'=>'required'
         ]);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
         $customer = Customer::create([
-            'name' => $request->name
+            'name' => $request->name,
+            'shop_id' =>$request->shop_id
         ]);
         return redirect()->route('customers')->with('Success', 'New Customer added Successfully');
     }
@@ -106,14 +108,16 @@ class Grandgalleria extends Controller
     public function storecategory(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:categories'
+            'name' => 'required|unique:categories',
+            'shop_id'=>'required'
         ]);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
         $category = Category::create([
-            'name' => $request->name
+            'name' => $request->name,
+            'shop_id' => $request->shop_id
         ]);
         return redirect()->route('categories')->with('Success', 'New Category added Successfully');
     }
@@ -124,7 +128,7 @@ class Grandgalleria extends Controller
             'name' => 'required|unique:products',
             'price' => 'required',
             'image' => 'required',
-            'description' => 'required',
+            'description' => 'required|max:1000',
             'quantity' => 'required',
             'category_id' => 'required',
             'shop_id' => 'required'
@@ -184,7 +188,7 @@ class Grandgalleria extends Controller
             return Redirect::route('home')->with('Success', 'Successfully authenticated');
         }else{
             $errors = new MessageBag(['error'=>'Invalid credentials. Please try again']);
-            return redirect()->withErrors($errors);
+            return redirect()->route('signin')->withErrors($errors);
         }
     }
 }

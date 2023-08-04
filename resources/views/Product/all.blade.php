@@ -31,14 +31,12 @@
                         <br>
                         <br>
                         <!-- Table with stripped rows -->
-                        <table class="table datatable">
+                        <table class="datatable striped-table" style="background-color: #000000;">
                             <thead>
                                 <tr>
                                     <th scope="col">Product Number</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Quantity</th>
-                                    <th scope="col">Category</th>
+                                    <th scope="col">Stock</th>
                                     <th scope="col">Action</th>
                                     <th scope="col">Action</th>
                                     <th scope="col">Action</th>
@@ -47,21 +45,17 @@
                             <tbody>
                                 @foreach($products as $product)
                                 <tr>
-                                    <th scope="row">{{$product->id}}</th>
+                                    <td>{{$product->id}}</td>
                                     <td>{{$product->name}}</td>
-                                    <td>{{$product->price}}</td>
                                     <td>{{$product->quantity}}</td>
-                                    <td>{{$product->category}}</td>
                                     <td>
-                                        <a href="">
-                                            <button type="button" class="btn btn-warning">
-                                                <i class="bi bi-info"></i>
-                                            </button>
-                                        </a>
+                                        <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#verticalycentered-{{$product->id}}">
+                                            <i class="bi bi-info"></i>
+                                        </button>
                                     </td>
                                     <td>
                                         <a href="">
-                                            <button type="button" class="btn btn-info">
+                                            <button type="button" class="btn btn-outline-info">
                                                 <i class="bi bi-pen"></i>
                                             </button>
                                         </a>
@@ -70,7 +64,7 @@
                                         <form action="" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger confirm"><i class="bi bi-trash"></i></button>
+                                            <button type="submit" class="btn btn-outline-danger confirm"><i class="bi bi-trash"></i></button>
                                         </form>
                                         <!-- <script src="sweetalert2.all.min.js"></script>
                                         <script>
@@ -113,6 +107,32 @@
                                             });
                                         </script> -->
                                     </td>
+                                        <div class="modal fade" id="verticalycentered-{{$product->id}}" tabindex="-1">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <!-- Card with an image on left -->
+                                                    <div class="card mb-3" style="background-color: #1A1A1B;">
+                                                        <div class="row g-0">
+                                                            <div class="col-md-4">
+                                                                <img style="background-color: #1A1A1B;" src="{{ url('product_images/'.$product->image)}}" class="img-fluid rounded-start" alt="...">
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <div class="card-body" style="background-color: #1A1A1B;">
+                                                                    <h5 class="card-title" style="color:#F2789F">{{$product->name}}</h5>
+                                                                    <p class="card-text" style="color:white">Stock: {{$product->quantity}}</p>
+                                                                    <p class="card-text" style="color:white">Retailing at: {{$product->price}}</p>
+                                                                    <p class="card-text" style="color:white">{{$product->description}}</p>
+                                                                    <p class="card-text" style="color:white">Item of: {{$product->shop->name}}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- End Card with an image on left -->
+                                                    <div class="modal-footer" style="background-color: #1A1A1B;">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- End Vertically centered Modal-->
                                 </tr>
                                 @endforeach
                             </tbody>

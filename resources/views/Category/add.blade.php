@@ -21,10 +21,14 @@
                 <div class="card" style="background-color:#000000; height: auto">
                     <div class="card-body">
                         <h5 class="card-title" style="color:#F9C5D5">Add new Product Category</h5>
-
                         <!-- Multi Columns Form -->
                         <form class="row g-3" action="{{route('storecategory')}}" method="post" id="categoryForm">
                             @csrf
+                            @if(Auth::check())
+                            <div class="col-md-12">
+                                <input type="hidden" name="shop_id" value="{{Auth::user()->id}}">
+                            </div>
+                            @endif
                             <div class="col-md-12">
                                 <input placeholder="Enter category name..." style="background-color: lightgrey;" type="text" name="name" class="form-control" id="inputName5">
                                 @error('name')

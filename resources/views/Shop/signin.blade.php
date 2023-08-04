@@ -62,6 +62,11 @@
                     <p class="nav-heading" style="text-align: center; margin-top:10px; color:white ">Don't have an account? <a href="{{route('signup')}}" style="color: #F2789F;">Sign Up</a></p>
                 </div>
             </form><!-- End No Labels Form -->
+            @if($errors->any())
+            <div class="alert alert-danger" role="alert">
+                {{ $errors->first()}}
+            </div>
+            @endif
         </div>
     </div>
 

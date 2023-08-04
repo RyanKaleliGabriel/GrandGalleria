@@ -1,5 +1,7 @@
 @extends('layout.app')
 
+
+
 @section('content')
 
 <main id="main" class="main">
@@ -23,32 +25,53 @@
                         <h5 class="card-title" style="color:#F9C5D5">Add new Product</h5>
 
                         <!-- Multi Columns Form -->
-                        <form class="row g-3" action="" method="post" id="productForm" enctype="multipart/form-data">
+                        <form class="row g-3" action="{{route('storeproduct')}}" method="post" id="productForm" enctype="multipart/form-data">
                             @csrf
+                            @if(Auth::check())
+                            <div>
+                                <input type="hidden" name="shop_id" value="{{Auth::user()->id}}">
+                            </div>
+                            @endif
                             <div class="col-md-6">
                                 <input placeholder="Enter product name..." style="background-color: lightgrey;" type="text" name="name" class="form-control" id="inputName5">
+                                @error('name')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
                             </div>
                             <div class="col-md-6">
-                                <select name="category_id" id="inputState" class="form-control js-example-responsive" style="background-color: lightgrey;">
-                                    <option value="" disabled selected>Select product category</option>
+                                <select id="inputState2" name="category_id" style="background-color: lightgrey;" class="form-control js-example-responsive">
                                     @foreach($categories as $category)
-                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                    <option style="color: black;" value="{{$category->id}}">{{$category->name}}</option>
                                     @endforeach
                                 </select>
+                                @error('category_id')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
                             </div>
                             <div class="col-md-6">
                                 <input placeholder="Enter product price" style="background-color: lightgrey;" type="text" name="price" class="form-control" id="inputName5">
+                                @error('price')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
                             </div>
                             <div class="col-md-6">
                                 <input placeholder="Quantity" style="background-color: lightgrey;" type="text" name="quantity" class="form-control" id="inputName5">
+                                @error('quantity')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
                             </div>
                             <div class="col-md-12">
                                 <input style="background-color: lightgrey;" class="form-control" name="image" type="file" id="formFile">
+                                @error('image')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
                             </div>
                             <div class="col-md-12">
-                                <textarea placeholder="Describe this product" rows="5" cols="50" style="background-color: lightgrey; width:100%" class="form-control" name="decsription"></textarea>
+                                <textarea maxlength="234" placeholder="Describe this product" rows="5" cols="50" style="background-color: lightgrey; width:100%" class="form-control" name="description"></textarea>
+                                @error('description')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
                             </div>
-
                             <div class="text-center">
                                 <button type="submit" class="btn btn-outline-light confirm" style="float: right;">Save</button>
                             </div>

@@ -31,12 +31,11 @@
                         <br>
                         <br>
                         <!-- Table with stripped rows -->
-                        <table class="table datatable">
+                        <table class="datatable striped-table" style="background-color: #000000;">
                             <thead>
                                 <tr>
                                     <th scope="col">UiD</th>
                                     <th scope="col">Customer Name</th>
-                                    <th scope="col">Trading at</th>
                                     <th scope="col">Action</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -46,7 +45,6 @@
                                 <tr>
                                     <th scope="row">{{$customer->id}}</th>
                                     <td>{{$customer->name}}</td>
-                                    <td>{{$customer->shop->name}}</td>
                                     <td>
                                         <a href="">
                                             <button type="button" class="btn btn-info">

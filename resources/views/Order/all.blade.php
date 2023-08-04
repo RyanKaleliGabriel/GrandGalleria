@@ -23,7 +23,7 @@
                     <div class="card-body">
                         <h5 class="card-title"  style="color:#F9C5D5">List of all orders</h5>
                         <!-- Table with stripped rows -->
-                        <table class="table datatable" >
+                        <table class="datatable striped-table" style="background-color: #000000;" >
                             <thead>
                                 <tr>
                                     <th scope="col">Order Number</th>

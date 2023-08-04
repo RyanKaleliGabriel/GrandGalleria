@@ -8,7 +8,7 @@
         <h1>Customer</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html" style="color:#F9C5D5;" >Home</a></li>
+                <li class="breadcrumb-item"><a href="index.html" style="color:#F9C5D5;">Home</a></li>
                 <li class="breadcrumb-item" style="color:#F2789F">Customer</li>
                 <li class="breadcrumb-item active" style="color:#F2789F">Add</li>
             </ol>
@@ -25,10 +25,15 @@
                         <!-- Multi Columns Form -->
                         <form class="row g-3" action="{{route('storecustomer')}}" method="post" id="customerForm">
                             @csrf
+                            @if(Auth::check())
+                            <div class="col-md-12">
+                                <input type="hidden" name="shop_id" value="{{Auth::user()->id}}">
+                            </div>
+                            @endif
                             <div class="col-md-12">
                                 <input placeholder="Enter customer's full name..." style="background-color: lightgrey;" type="text" name="name" class="form-control" id="inputName5">
                                 @error('name')
-                                <span class="text-danger">{{ $message}}</span>
+                                <span class="text-danger">{{$message}}</span>
                                 @enderror
                             </div>
                             <div class="text-center">
@@ -53,7 +58,7 @@
                                         title: 'Proceed to add a new Customer?',
                                         cancelButtonText: 'Cancel',
                                         icon: 'question',
-                                        background:'black',
+                                        background: 'black',
                                         showCancelButton: true,
                                         confirmButtonColor: '#3085d6',
                                         cancelButtonColor: '#d33',
