@@ -319,3 +319,42 @@
   }
 
 })();
+
+// Get all elements with the 'confirm' class
+var confirmButtons = document.getElementsByClassName('confirm');
+
+// Iterate over each confirm button
+Array.from(confirmButtons).forEach(function(button) {
+    button.addEventListener('click', function(event) {
+        // Get the closest form to the button
+        var form = button.closest('form');
+
+        // Prevent the default form submission
+        event.preventDefault();
+
+        // Configure SweetAlert alert as you wish
+        Swal.fire({
+            title: 'Are you sure you want to delete?',
+            text: "You won't be able to revert this!",
+            cancelButtonText: "Cancel",
+            icon: 'warning',
+            background: 'black',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Delete'
+        }).then(function(result) {
+            // In case of deletion confirmation, submit the form
+            if (result.isConfirmed) {
+                form.submit();
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Deleted Successfully',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+        });
+    });
+});

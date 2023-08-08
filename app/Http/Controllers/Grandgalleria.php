@@ -30,48 +30,63 @@ class Grandgalleria extends Controller
 
         return view('home', compact('transactions', 'orders', 'products', 'customers', 'notifications'));
     }
-    //
+
     public function orders()
     {
         $orders = Order::where('active', true)->get();
-        return view('Order.all', compact('orders'));
+        $shop = Auth::user();
+        $notifications = Notification::where('shop_id', $shop->id)->where('active', true)->count();
+        return view('Order.all', compact('orders', 'notifcations'));
     }
     public function customers()
     {
         $customers = Customer::where('active', true)->get();
-        return view('Customer.all', compact('customers'));
+        $shop = Auth::user();
+        $notifications = Notification::where('shop_id', $shop->id)->where('active', true)->count();
+        return view('Customer.all', compact('customers', 'notifications'));
     }
     public function products()
     {
         $products = Product::where('active', true)->get();
-        return view('Product.all', compact('products'));
+        $shop = Auth::user();
+        $notifications = Notification::where('shop_id', $shop->id)->where('active', true)->count();
+        return view('Product.all', compact('products', 'notifications'));
     }
     public function categories()
     {
         $categories = Category::where('active', true)->get();
-        return view('Category.all', compact('categories'));
+        $shop = Auth::user();
+        $notifications = Notification::where('shop_id', $shop->id)->where('active', true)->count();
+        return view('Category.all', compact('categories', 'notifications'));
     }
     public function transactions()
     {
         $transactions = Transaction::where('active', true)->get();
-        return view('Transaction.all', compact('transactions'));
+        $shop = Auth::user();
+        $notifications = Notification::where('shop_id', $shop->id)->where('active', true)->count();
+        return view('Transaction.all', compact('transactions', 'notifcations'));
     }
 
     public function addcustomer()
     {
-        return view('Customer.add');
+        $shop = Auth::user();
+        $notifications = Notification::where('shop_id', $shop->id)->where('active', true)->count();
+        return view('Customer.add', compact('notifications'));
     }
 
     public function addproduct()
     {
         $categories = Category::where('active', true)->get();
-        return view('Product.add', compact('categories'));
+        $shop = Auth::user();
+        $notifications = Notification::where('shop_id', $shop->id)->where('active', true)->count();
+        return view('Product.add', compact('categories', 'notifications'));
     }
 
     public function addcategory()
     {
-
-        return view('Category.add');
+        $shop = Auth::user();
+        $notifications = Notification::where('shop_id', $shop->id)->where('active', true)->count();
+        return view('Category.add', compact('notifcations'));
     }
 
     public function signin()
@@ -84,6 +99,38 @@ class Grandgalleria extends Controller
         return view('Shop.signup');
     }
 
+    public function editcustomer($id)
+    {
+        $shop = Auth::user();
+        $notifications = Notification::where('shop_id', $shop->id)->where('active', true)->count();
+        $customer = Customer::findorFail($id);
+        return view('Customer.update', compact('customer', 'notifications'));
+    }
+
+    public function editcategory($id)
+    {
+        $shop = Auth::user();
+        $notifications = Notification::where('shop_id', $shop->id)->where('active', true)->count();
+        $category = Category::findorFail($id);
+        return view('Category.update', compact('category', 'notifications'));
+    }
+
+    public function editproduct($id)
+    {
+        $shop = Auth::user();
+        $notifications = Notification::where('shop_id', $shop->id)->where('active', true)->count();
+        $product = Product::findorFail($id);
+        $categories = Category::where('active', true)->get();
+        return view('Product.update', compact('product', 'categories', 'notifications'));
+    }
+
+    public function profile()
+    {
+        $shop = Auth::user();
+        $notifications = Notification::where('shop_id', $shop->id)->where('active', true)->count();
+        return view('Shop.profile', compact('notifications'));
+    }
+
 
 
 
@@ -92,7 +139,7 @@ class Grandgalleria extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'shop_id'=>'required'
+            'shop_id' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -100,7 +147,7 @@ class Grandgalleria extends Controller
         }
         $customer = Customer::create([
             'name' => $request->name,
-            'shop_id' =>$request->shop_id
+            'shop_id' => $request->shop_id
         ]);
         return redirect()->route('customers')->with('Success', 'New Customer added Successfully');
     }
@@ -109,7 +156,7 @@ class Grandgalleria extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|unique:categories',
-            'shop_id'=>'required'
+            'shop_id' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -184,11 +231,118 @@ class Grandgalleria extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        if(Auth::attempt($credentials)){
+        if (Auth::attempt($credentials)) {
             return Redirect::route('home')->with('Success', 'Successfully authenticated');
-        }else{
-            $errors = new MessageBag(['error'=>'Invalid credentials. Please try again']);
+        } else {
+            $errors = new MessageBag(['error' => 'Invalid credentials. Please try again']);
             return redirect()->route('signin')->withErrors($errors);
         }
+    }
+
+    //Put methods
+
+    public function updatecustomer(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $customer = Customer::findorFail($id);
+        $customer->update([
+            'name' => $request->name
+        ]);
+        return redirect()->route('customers');
+    }
+
+    public function updatecategory(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|unique:categories,name,' . $id
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $category = Category::findorFail($id);
+
+        $category->update([
+            'name' => $request->name
+        ]);
+        return redirect()->route('categories');
+    }
+
+    public function updateproduct(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|unique:products,name,' . $id,
+            'price' => 'required',
+            'image' => 'required',
+            'description' => 'required|max:1000',
+            'quantity' => 'required',
+            'category_id' => 'required',
+            'shop_id' => 'required'
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('product_images'), $imageName);
+
+        $product = Product::findorFail($id);
+
+        $product->update([
+            'name' => $request->name,
+            'price' => $request->price,
+            'image' => $imageName,
+            'description' => $request->description,
+            'quantity' => $request->quantity,
+            'category_id' => $request->category_id,
+            'shop_id' => $request->shop_id
+        ]);
+        return redirect()->route('products');
+    }
+
+    ///DELETE Methods
+    public function deletecustomer($id)
+    {
+        $customer = Customer::findorFail($id);
+        if ($customer) {
+            $customer->active = false;
+            $customer->save();
+        }
+        return redirect()->route('customers');
+    }
+
+
+    public function deleteproduct($id)
+    {
+        $product = Product::findorFail($id);
+        if ($product) {
+            $product->active = false;
+            $product->save();
+        }
+        return redirect()->route('products');
+    }
+
+    public function deletecategory($id)
+    {
+        $category = Category::findorFail($id);
+        if ($category) {
+            $category->active = false;
+            $category->save();
+        }
+        return redirect()->route('categories');
+    }
+
+    public function signout()
+    {
+        Auth::logout();
+        return redirect()->route('signin');
     }
 }

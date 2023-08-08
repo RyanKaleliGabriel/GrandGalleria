@@ -46,58 +46,19 @@
                                     <th scope="row">{{$customer->id}}</th>
                                     <td>{{$customer->name}}</td>
                                     <td>
-                                        <a href="">
+                                        <a href="{{route('editcustomer', $customer->id)}}">
                                             <button type="button" class="btn btn-info">
                                                 <i class="bi bi-pen"></i>
                                             </button>
                                         </a>
                                     </td>
                                     <td>
-                                        <form action="" method="post">
+                                        <form action="{{route('deletecustomer', $customer->id)}}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger confirm"><i class="bi bi-trash"></i></button>
                                         </form>
-                                        <!-- <script src="sweetalert2.all.min.js"></script>
-                                        <script>
-                                            // Get all elements with the 'confirm' class
-                                            var confirmButtons = document.getElementsByClassName('confirm');
-
-                                            // Iterate over each confirm button
-                                            Array.from(confirmButtons).forEach(function(button) {
-                                                button.addEventListener('click', function(event) {
-                                                    // Get the closest form to the button
-                                                    var form = button.closest('form');
-
-                                                    // Prevent the default form submission
-                                                    event.preventDefault();
-
-                                                    // Configure SweetAlert alert as you wish
-                                                    Swal.fire({
-                                                        title: 'Are you sure you want to delete?',
-                                                        text: "You won't be able to revert this!",
-                                                        cancelButtonText: "Cancel",
-                                                        icon: 'warning',
-                                                        showCancelButton: true,
-                                                        confirmButtonColor: '#3085d6',
-                                                        cancelButtonColor: '#d33',
-                                                        confirmButtonText: 'Delete'
-                                                    }).then(function(result) {
-                                                        // In case of deletion confirmation, submit the form
-                                                        if (result.isConfirmed) {
-                                                            form.submit();
-                                                            Swal.fire({
-                                                                position: 'top-end',
-                                                                icon: 'success',
-                                                                title: 'Deleted Successfully',
-                                                                showConfirmButton: false,
-                                                                timer: 1500
-                                                            });
-                                                        }
-                                                    });
-                                                });
-                                            });
-                                        </script> -->
+                                        <script src="sweetalert2.all.min.js"></script>
                                     </td>
                                 </tr>
                                 @endforeach

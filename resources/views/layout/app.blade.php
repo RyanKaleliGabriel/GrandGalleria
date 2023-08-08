@@ -62,13 +62,12 @@
 
                     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown" style="color:#F9C5D5;">
                         <i class="bi bi-bell"></i>
-                        <span class="badge bg-primary badge-number" style="color:white;">4</span>
+                        <span class="badge bg-primary badge-number" style="color:white;">{{$notifications}}</span></span>
                     </a><!-- End Notification Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications" style="background-color: #000000; color:#F9C5D5;">
                         <li class="dropdown-header">
-                            You have 4 new notifications
-                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+                            You have {{$notifications}} new notifications
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -86,7 +85,7 @@
                             <hr class="dropdown-divider">
                         </li>
                         <li class="dropdown-footer">
-                            <a href="#">Show all notifications</a>
+                            <a href="#">Mark as Read</a>
                         </li>
                     </ul><!-- End Notification Dropdown Items -->
 
@@ -111,7 +110,7 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html" style="color:#F9C5D5;">
+                            <a class="dropdown-item d-flex align-items-center" href="{{route('profile')}}" style="color:#F9C5D5;">
                                 <i class="bi bi-person"></i>
                                 <span>Profile</span>
                             </a>
@@ -121,10 +120,13 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="#" style="color:#F9C5D5;">
-                                <i class="bi bi-box-arrow-right"></i>
-                                <span>Sign Out</span>
-                            </a>
+                            <form action="{{route('signout')}}" method="post">
+                                @csrf
+                                <button type="submit" class="dropdown-item d-flex align-items-center" href="" style="color:#F9C5D5;">
+                                    <i class="bi bi-box-arrow-right"></i>
+                                    <span>Sign Out</span>
+                                </button>
+                            </form>
                         </li>
 
                     </ul><!-- End Profile Dropdown Items -->
@@ -213,8 +215,8 @@
             @if(Auth::check())
             <li class="nav-heading">Administrator</li>
             <li class="nav-item">
-                <form action="" method="post">
-
+                <form action="{{route('signout')}}" method="post">
+                    @csrf
                     <button style="background-color: #000000; color:#F9C5D5;" type="submit" class="nav-link collapsed" href="">
                         <i style="color:#F9C5D5;" class="bi bi-box-arrow-right"></i>
                         <span>Sign out</span>
