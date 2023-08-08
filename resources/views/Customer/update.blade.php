@@ -38,7 +38,7 @@
                                 @enderror
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-outline-light confirm" style="float: right;">Save</button>
+                                <button type="submit" class="btn btn-outline-light" style="float: right;">Save</button>
                             </div>
                         </form><!-- End Multi Columns Form -->
                         <script src="sweetalert2.all.min.js"></script>

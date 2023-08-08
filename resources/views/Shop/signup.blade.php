@@ -48,7 +48,6 @@
 
         <div class="card-body">
             <h5 class="card-title" style="color:#F2789F">Register a new Shop</h5>
-
             <!-- No Labels Form -->
             <form class="row g-3" method="post" action="{{route('storeshop')}}" enctype="multipart/form-data">
                 @csrf
@@ -58,7 +57,6 @@
                     <span class="text-danger">{{$message}}</span>
                     @enderror
                 </div>
-
                 <div class="col-md-12">
                     <input name="email" type="email" class="form-control" placeholder="Email Address" style="background-color: lightgrey;">
                     @error('email')
@@ -66,13 +64,33 @@
                     @enderror
                 </div>
                 <div class="col-md-12">
+                    <input name="phone" type="text" class="form-control" placeholder="Phone Number" style="background-color: lightgrey;">
+                    @error('phone')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
+                <div class="col-md-12">
+                    <input name="state" type="text" class="form-control" placeholder="State" style="background-color: lightgrey;">
+                    @error('state')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
+                <div class="col-md-12">
+                    <input name="address" type="text" class="form-control" placeholder="Address" style="background-color: lightgrey;">
+                    @error('address')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
+                <input type="hidden" name="update_image" value="0">
+
+                <div class="col-md-12">
                     <input style="background-color: lightgrey;" class="form-control block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" name="image" type="file" id="formFile" style="background-color: lightgrey;">
                     @error('image')
                     <span class="text-danger">{{$message}}</span>
                     @enderror
                 </div>
                 <div class="col-md-12">
-                    <textarea placeholder="Brief description about your shop" rows="5" cols="50" style="background-color: lightgrey; width:100%" class="form-control" name="description" style="background-color: lightgrey;"></textarea>
+                    <textarea maxlength="234" placeholder="Brief description about your shop" rows="5" cols="50" style="background-color: lightgrey; width:100%" class="form-control" name="description" style="background-color: lightgrey;"></textarea>
                     @error('description')
                     <span class="text-danger">{{$message}}</span>
                     @enderror

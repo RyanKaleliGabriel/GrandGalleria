@@ -21,6 +21,13 @@ return new class extends Migration
             $table->string('password');
             $table->string('description');
             $table->string('image');
+            $table->string('state')->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('linkedin')->nullable();
         });
     }
 
@@ -29,6 +36,8 @@ return new class extends Migration
      *
      * @return void
      */
+
+     
     public function down()
     {
         Schema::dropIfExists('shops');

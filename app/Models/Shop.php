@@ -19,7 +19,8 @@ class Shop extends Authenticatable
         'image',
         'email',
         'password',
-        'description'
+        'description',
+        'phone','state','address','twitter','facebook','instagram','linkedin'
     ];
 
     public function product(): HasMany

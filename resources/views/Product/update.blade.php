@@ -63,12 +63,26 @@
                                 @enderror
                             </div>
                             <div class="col-md-12">
-                                <span class="text-secondary">Product Image: {{$product->image}}</span>
-                                <input style="background-color: lightgrey;" class="form-control" name="image" type="file" id="formFile">
+                                <label for="updateImage" class="form-label" style="color:white">Update Image?</label>
+                                <input type="checkbox" id="updateImage" name="update_image" value="1">
+                                <br>
+                                <span class="text-secondary">Current Image: {{$product->image}}</span>
+                            </div>
+
+                            <div class="col-md-12">
+                                <input class="form-control block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 hidden-image-input" name="image" type="file" id="formFile" style="background-color: lightgrey; display: none;">
                                 @error('image')
                                 <span class="text-danger">{{$message}}</span>
                                 @enderror
                             </div>
+                            <script>
+                                const updateImageCheckbox = document.getElementById('updateImage');
+                                const hiddenImageInput = document.querySelector('.hidden-image-input');
+
+                                updateImageCheckbox.addEventListener('change', function() {
+                                    hiddenImageInput.style.display = this.checked ? 'block' : 'none';
+                                });
+                            </script>
                             <div class="col-md-12">
                                 <textarea value="{{$product->description}}" maxlength="234" placeholder="Describe this product" rows="5" cols="50" style="background-color: lightgrey; width:100%" class="form-control" name="description">{{$product->description}}</textarea>
                                 @error('description')
@@ -76,7 +90,7 @@
                                 @enderror
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-outline-light confirm" style="float: right;">Save</button>
+                                <button type="submit" class="btn btn-outline-light" style="float: right;">Save</button>
                             </div>
                         </form><!-- End Multi Columns Form -->
                         <script src="sweetalert2.all.min.js"></script>

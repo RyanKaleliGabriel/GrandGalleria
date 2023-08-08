@@ -207,7 +207,10 @@ class Grandgalleria extends Controller
             'email' => 'required|unique:shops',
             'image' => 'required|max:5000',
             'description' => 'required',
-            'password' => 'required|min:8|max:15'
+            'password' => 'required|min:8|max:15',
+            'phone' => 'required',
+            'state' => 'required',
+            'address' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -220,7 +223,10 @@ class Grandgalleria extends Controller
             'email' => $request->email,
             'image' => $imageName,
             'description' => $request->description,
-            'password' => bcrypt($request->password)
+            'password' => bcrypt($request->password),
+            'phone' => $request->phone,
+            'state' => $request->state,
+            'address' => $request->address,
         ]);
 
         return redirect()->route('signin')->with('Success', 'Successfully signed in');
@@ -281,7 +287,6 @@ class Grandgalleria extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|unique:products,name,' . $id,
             'price' => 'required',
-            'image' => 'required',
             'description' => 'required|max:1000',
             'quantity' => 'required',
             'category_id' => 'required',
@@ -291,21 +296,66 @@ class Grandgalleria extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $imageName = time() . '.' . $request->image->extension();
-        $request->image->move(public_path('product_images'), $imageName);
-
         $product = Product::findorFail($id);
+
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('product_images'), $imageName);
+            $product->update([
+                'image' => $imageName
+            ]);
+        }
 
         $product->update([
             'name' => $request->name,
             'price' => $request->price,
-            'image' => $imageName,
             'description' => $request->description,
             'quantity' => $request->quantity,
             'category_id' => $request->category_id,
             'shop_id' => $request->shop_id
         ]);
         return redirect()->route('products');
+    }
+
+    public function updateprofile(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required',
+            'description' => 'required',
+            'phone' => 'required',
+            'state' => 'required',
+            'address' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $shop = Shop::findorFail($id);
+
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('shop_images'), $imageName);
+
+            $shop->update([
+                'image' =>$imageName
+            ]);
+        }
+
+        $shop->update([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'description' => $request->description,
+            'address' => $request->address,
+            'state' => $request->state,
+            'twitter' => $request->twitter,
+            'instagram' => $request->instagram,
+            'facebook' => $request->facebook,
+            'linkedin' => $request->linkedin
+        ]);
+        return redirect()->route('profile');
     }
 
     ///DELETE Methods

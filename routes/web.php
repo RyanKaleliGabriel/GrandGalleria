@@ -51,6 +51,8 @@ Route::post('storeshop', [Grandgalleria::class, 'storeshop'])->name('storeshop')
 Route::post('authadmin', [Grandgalleria::class, 'authadmin'])->name('authadmin');
 Route::post('signout', [Grandgalleria::class, 'signout'])->name('signout')->middleware('auth');
 Route::get('profile', [Grandgalleria::class, 'profile'])->name('profile')->middleware('auth');
+Route::put('updateprofile/{shop}', [Grandgalleria::class, 'updateprofile'])->name('updateprofile')->middleware('auth');
+
 
 
 
