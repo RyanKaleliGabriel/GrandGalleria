@@ -395,4 +395,5 @@ class Grandgalleria extends Controller
         Auth::logout();
         return redirect()->route('signin');
     }
+
 }

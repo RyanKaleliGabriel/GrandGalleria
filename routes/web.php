@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FreshMart;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Grandgalleria;
 
@@ -54,5 +55,7 @@ Route::get('profile', [Grandgalleria::class, 'profile'])->name('profile')->middl
 Route::put('updateprofile/{shop}', [Grandgalleria::class, 'updateprofile'])->name('updateprofile')->middleware('auth');
 
 
+
+Route::get('freshmart', [FreshMart::class, 'freshmart'])->name('freshmart');
 
 
