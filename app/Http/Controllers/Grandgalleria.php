@@ -139,7 +139,8 @@ class Grandgalleria extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'shop_id' => 'required'
+            'shop_id' => 'required',
+            'email'=>'required'
         ]);
 
         if ($validator->fails()) {
@@ -147,7 +148,8 @@ class Grandgalleria extends Controller
         }
         $customer = Customer::create([
             'name' => $request->name,
-            'shop_id' => $request->shop_id
+            'shop_id' => $request->shop_id,
+            'email'=>$request->email
         ]);
         return redirect()->route('customers')->with('Success', 'New Customer added Successfully');
     }
@@ -250,7 +252,8 @@ class Grandgalleria extends Controller
     public function updatecustomer(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required'
+            'name' => 'required',
+            'email'=> 'required'
         ]);
 
         if ($validator->fails()) {
@@ -259,7 +262,8 @@ class Grandgalleria extends Controller
 
         $customer = Customer::findorFail($id);
         $customer->update([
-            'name' => $request->name
+            'name' => $request->name,
+            'email'=>$request->email
         ]);
         return redirect()->route('customers');
     }

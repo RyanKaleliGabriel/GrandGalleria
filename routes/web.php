@@ -17,7 +17,7 @@ use App\Http\Controllers\Grandgalleria;
 
 Route::get('/', function () {
     return view('home');
-})->name('home');
+})->name('home')->middleware('auth');
 
 Route::get('/', [Grandgalleria::class, 'home'])->name('home')->middleware('auth');
 
@@ -57,5 +57,8 @@ Route::put('updateprofile/{shop}', [Grandgalleria::class, 'updateprofile'])->nam
 
 
 Route::get('freshmart', [FreshMart::class, 'freshmart'])->name('freshmart');
-
+Route::get('category/{category}', [FreshMart::class, 'freshmartcategory'])->name('freshmartcategory');
+Route::get('subscribe', [FreshMart::class, 'subscribe'])->name('subscribe');
+Route::post('subscribecustomer', [FreshMart::class, 'subscribecustomer'])->name('subscribecustomer');
+Route::get('cartlist', [FreshMart::class, 'cartlist'])->name('cartlist');
 

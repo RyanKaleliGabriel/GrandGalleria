@@ -32,8 +32,14 @@
                             </div>
                             @endif
                             <div class="col-md-12">
-                                <input value="{{$customer->name}}" placeholder="Enter customer's full name..." style="background-color: lightgrey;" type="text" name="name" class="form-control" id="inputName5">
+                                <input value="{{$customer->name}}" placeholder="Full Name" style="background-color: lightgrey;" type="text" name="name" class="form-control" id="inputName5">
                                 @error('name')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
+                            </div>
+                            <div class="col-md-12">
+                                <input value="{{$customer->email}}" placeholder="Email" style="background-color: lightgrey;" type="text" name="email" class="form-control" id="inputName5">
+                                @error('email')
                                 <span class="text-danger">{{$message}}</span>
                                 @enderror
                             </div>

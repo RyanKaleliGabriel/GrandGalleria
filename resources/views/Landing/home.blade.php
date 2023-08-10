@@ -21,6 +21,10 @@
 
   <!-- ======= Gallery Section ======= -->
   <section id="gallery" class="gallery">
+    <div class="section-header">
+      <h2 style="margin-left: 4rem;">Total of {{$numberofproducts}} varieties</h2>
+      <p style="margin-left: 4rem;">All Products</p>
+    </div>
     <div class="container-fluid">
       <div class="row gy-4 justify-content-center">
         @foreach($products as $product)
@@ -62,7 +66,6 @@
       </div>
     </div>
   </section><!-- End Gallery Section -->
-
   <!-- ======= End Page Header ======= -->
   <div class="page-header d-flex align-items-center" style="background-color: #27a776;">
     <div class="container position-relative">
@@ -113,18 +116,18 @@
         </div><!-- End Info Item -->
 
         <div class="header-social-links">
-        @if($shop->twitter)
-        <a href="{{$shop->twitter}}" class="twitter"><i class="bi bi-twitter"></i></a>
-        @endif
-        @if($shop->facebook)
-        <a href="{{$shop->facebook}}" class="facebook"><i class="bi bi-facebook"></i></a>
-        @endif
-        @if($shop->instagram)
-        <a href="{{$shop->instagram}}" class="instagram"><i class="bi bi-instagram"></i></a>
-        @endif
-        @if($shop->linkedin)
-        <a href="{{$shop->linkedin}}" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
-        @endif
+          @if($shop->twitter)
+          <a href="{{$shop->twitter}}" class="twitter"><i class="bi bi-twitter"></i></a>
+          @endif
+          @if($shop->facebook)
+          <a href="{{$shop->facebook}}" class="facebook"><i class="bi bi-facebook"></i></a>
+          @endif
+          @if($shop->instagram)
+          <a href="{{$shop->instagram}}" class="instagram"><i class="bi bi-instagram"></i></a>
+          @endif
+          @if($shop->linkedin)
+          <a href="{{$shop->linkedin}}" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
+          @endif
         </div>
       </div>
 

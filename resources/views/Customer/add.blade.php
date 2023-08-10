@@ -31,13 +31,19 @@
                             </div>
                             @endif
                             <div class="col-md-12">
-                                <input placeholder="Enter customer's full name..." style="background-color: lightgrey;" type="text" name="name" class="form-control" id="inputName5">
+                                <input placeholder="Full Name" style="background-color: lightgrey;" type="text" name="name" class="form-control" id="inputName5">
                                 @error('name')
                                 <span class="text-danger">{{$message}}</span>
                                 @enderror
                             </div>
+                            <div class="col-md-12">
+                                <input placeholder="Email" style="background-color: lightgrey;" type="text" name="email" class="form-control" id="inputName5">
+                                @error('email')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
+                            </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-outline-light confirm" style="float: right;">Save</button>
+                                <button type="submit" class="btn btn-outline-light" style="float: right;">Save</button>
                             </div>
                         </form><!-- End Multi Columns Form -->
                         <script src="sweetalert2.all.min.js"></script>

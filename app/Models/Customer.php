@@ -14,7 +14,8 @@ class Customer extends Model
     protected $fillable =
     [
         'name',
-        'shop_id'
+        'shop_id',
+        'email'
     ];
 
     public function order(): HasMany
