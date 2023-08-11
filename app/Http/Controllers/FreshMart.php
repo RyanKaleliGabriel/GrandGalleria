@@ -15,8 +15,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\MessageBag;
-use Darryldecode\Cart\Facades\Cart;
-
+use Cart;
 
 
 class FreshMart extends Controller
@@ -50,9 +49,10 @@ class FreshMart extends Controller
 
     public function cartlist()
     {
-        $cartItems = Cart::getContent();
-        // dd($cartItems);
-        return view('cart', compact('cartItems'));
+        $shop = Shop::find(1);
+        $categories = Category::where('shop_id', $shop->id)->where('active', true)->get();
+        $cart = Cart::getContent();
+        return view('Landing.cart', compact('cart', 'shop', 'categories'));
     }
 
 
@@ -74,5 +74,47 @@ class FreshMart extends Controller
             'email' => $request->email
         ]);
         return redirect()->route('freshmart')->with('Success', 'New Customer added Successfully');
+    }
+
+    public function addtocart(Request $request)
+    {
+        $product_id = $request->input('product_id');
+        $name = $request->input('name');
+        $price = $request->input('price');
+        $quantity = $request->input('quantity', 1);
+
+        $product = Product::find($product_id);
+        $product_image = $product->image;
+
+        $add = Cart::add([
+            'id'=> $product_id,
+            'name'=>$name,
+            'image'=>$product_image,
+            'price'=>$price,
+            'quantity'=>$quantity,
+            'attributes'=> [
+                'image'=>$product_image
+            ],
+        ]);
+
+        return redirect()->back()->with('Success', 'Added to Cart');
+    }
+
+    public function removefromcart($product_id)
+    {
+        Cart::remove($product_id);
+        return redirect()->back()->with('Success', 'Item Removed');
+    }
+
+    public function addupdate($product_id)
+    {
+        Cart::update(
+            $product_id,
+            [
+                'quantity'=>[
+                    'value'=>$
+                ]
+            ]
+        )
     }
 }

@@ -61,4 +61,8 @@ Route::get('category/{category}', [FreshMart::class, 'freshmartcategory'])->name
 Route::get('subscribe', [FreshMart::class, 'subscribe'])->name('subscribe');
 Route::post('subscribecustomer', [FreshMart::class, 'subscribecustomer'])->name('subscribecustomer');
 Route::get('cartlist', [FreshMart::class, 'cartlist'])->name('cartlist');
+Route::post('addtocart', [FreshMart::class, 'addtocart'])->name('addtocart');
+Route::get('removefromcart/{item}', [FreshMart::class, 'removefromcart'])->name('removefromcart');
+Route::post('addupdate/{item}', [FreshMart::class, 'addupdate'])->name('addupdate');
+Route::post('minusupdate/{item}', [FreshMart::class, 'minusupdate'])->name('minusupdate');
 

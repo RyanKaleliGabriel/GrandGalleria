@@ -34,7 +34,14 @@
             <p>{{$product->name}}</p>
             <p class="price">Ksh:{{$product->price}}</p>
           </div>
-          <button class="add-btn">Add to Cart</button>
+          <form action="{{route('addtocart')}}" method="post">
+            @csrf
+            @method('POST')
+            <input type="hidden" value="{{$product->id}}" name="product_id">
+            <input type="hidden" value="{{$product->name}}" name="name">
+            <input type="hidden" value="{{$product->price}}" name="price">
+            <button class="add-btn">Add to Cart</button>
+          </form>
         </div>
         @endforeach
       </div>

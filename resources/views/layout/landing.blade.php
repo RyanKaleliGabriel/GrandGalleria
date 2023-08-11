@@ -68,7 +68,7 @@
       </nav><!-- .navbar -->
 
       <div class="header-social-links">
-        <a href="" class="twitter">
+        <a href="{{route('cartlist')}}" class="twitter">
           <i class="bi bi-cart flex-shrink-0" style="font-size: 1.5rem;"></i>
           <span class="badge bg-primary badge-number" style="color:white; font-size: 15px; background-color:#27a776">0</span></span>
         </a>
