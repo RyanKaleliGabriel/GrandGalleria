@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\MessageBag;
 use Cart;
-
+use Darryldecode\Cart\Cart as CartCart;
 
 class FreshMart extends Controller
 {
@@ -27,7 +27,9 @@ class FreshMart extends Controller
         $categories = Category::where('shop_id', $shop->id)->where('active', true)->get();
         $products = Product::where('shop_id', $shop->id)->where('active', true)->paginate(15);
         $numberofproducts = Product::where('shop_id', $shop->id)->where('active', true)->count();
-        return view('Landing.home', compact('shop', 'categories', 'products', 'numberofproducts'));
+        $cart = Cart::getContent();
+        $itemCount = $cart->count();
+        return view('Landing.home', compact('shop', 'categories', 'products', 'numberofproducts', 'itemCount'));
     }
 
     public function freshmartcategory($id)
@@ -37,14 +39,18 @@ class FreshMart extends Controller
         $categories = Category::where('shop_id', $shop->id)->where('active', true)->get();
         $products = Product::where('category_id', $id)->where('active', true)->where('shop_id', $shop->id)->get();
         $numberofproducts = Product::where('category_id', $id)->where('active', true)->where('shop_id', $shop->id)->count();
-        return view('Landing.category', compact('products', 'category', 'numberofproducts', 'shop', 'categories'));
+        $cart = Cart::getContent();
+        $itemCount = $cart->count();
+        return view('Landing.category', compact('products', 'category', 'numberofproducts', 'shop', 'categories', 'itemCount'));
     }
 
     public function subscribe()
     {
         $shop = Shop::find(1);
         $categories = Category::where('shop_id', $shop->id)->where('active', true)->get();
-        return view('Landing.subscribe', compact('shop', 'categories'));
+        $cart = Cart::getContent();
+        $itemCount = $cart->count();
+        return view('Landing.subscribe', compact('shop', 'categories', 'itemCount'));
     }
 
     public function cartlist()
@@ -52,7 +58,19 @@ class FreshMart extends Controller
         $shop = Shop::find(1);
         $categories = Category::where('shop_id', $shop->id)->where('active', true)->get();
         $cart = Cart::getContent();
-        return view('Landing.cart', compact('cart', 'shop', 'categories'));
+        $itemCount = $cart->count();
+
+        return view('Landing.cart', compact('cart', 'shop', 'categories', 'itemCount'));
+    }
+
+    public function checkout()
+    {
+        $shop = Shop::find(1);
+        $categories = Category::where('shop_id', $shop->id)->where('active', true)->get();
+        $cart = Cart::getContent();
+        $itemCount = $cart->count();
+
+        return view('Landing.checkout', compact('cart', 'shop', 'categories', 'itemCount'));
     }
 
 
@@ -78,22 +96,16 @@ class FreshMart extends Controller
 
     public function addtocart(Request $request)
     {
-        $product_id = $request->input('product_id');
-        $name = $request->input('name');
-        $price = $request->input('price');
-        $quantity = $request->input('quantity', 1);
-
-        $product = Product::find($product_id);
+        $product = Product::find($request->product_id);
         $product_image = $product->image;
-
         $add = Cart::add([
-            'id'=> $product_id,
-            'name'=>$name,
-            'image'=>$product_image,
-            'price'=>$price,
-            'quantity'=>$quantity,
-            'attributes'=> [
-                'image'=>$product_image
+            'id' => $request->product_id,
+            'name' => $request->name,
+            'image' => $product_image,
+            'price' => $request->price,
+            'quantity' => 1,
+            'attributes' => [
+                'image' => $product_image
             ],
         ]);
 
@@ -106,15 +118,25 @@ class FreshMart extends Controller
         return redirect()->back()->with('Success', 'Item Removed');
     }
 
-    public function addupdate($product_id)
+    public function updatecart(Request $request, $id)
     {
         Cart::update(
-            $product_id,
+            $request->id,
             [
-                'quantity'=>[
-                    'value'=>$
-                ]
+                'quantity' => [
+                    'relative' => false,
+                    'value' => $request->quantity
+                ],
             ]
-        )
+        );
+
+        session()->flash('success', 'Item Cart is Updated Successfully !');
+        return redirect()->back()->with('success', 'Item Cart is Updated Successfully !');
+    }
+
+    public function clearcart()
+    {
+        Cart::clear();
+        return redirect()->back()->with('Success', 'Cleared');
     }
 }

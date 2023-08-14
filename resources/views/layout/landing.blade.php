@@ -62,7 +62,6 @@
               @endforeach
             </ul>
           </li>
-          <li><a href="contact.html">Contact</a></li>
           <li><a href="{{route('subscribe')}}">Subscribe</a></li>
         </ul>
       </nav><!-- .navbar -->
@@ -70,7 +69,7 @@
       <div class="header-social-links">
         <a href="{{route('cartlist')}}" class="twitter">
           <i class="bi bi-cart flex-shrink-0" style="font-size: 1.5rem;"></i>
-          <span class="badge bg-primary badge-number" style="color:white; font-size: 15px; background-color:#27a776">0</span></span>
+          <span class="badge bg-primary badge-number" style="color:white; font-size: 15px; background-color:#27a776">{{$itemCount}}</span></span>
         </a>
       </div>
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
@@ -88,14 +87,14 @@
   <footer id="footer" class="footer">
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong><span>PhotoFolio</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>Ryan</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->
         <!-- You can delete the links only if you purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/photofolio-bootstrap-photography-website-template/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        Designed by <a href="https://bootstrapmade.com/">Ryan</a>
       </div>
       <div class="header-social-links d-flex justify-content-center">
         @if($shop->twitter)

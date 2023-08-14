@@ -23,25 +23,23 @@
                 </div><!-- End Service Item -->
                 @else
                 @foreach($cart as $item)
+
                 <div class="col-xl-12 col-md-6 d-flex">
                     <div class="cart service-item position-relative">
                         <img src="{{ url('product_images/'.$item->attributes->image)}}" alt="" height="50" width="50" class="rounded-circle">
                         <div class="item-details">
-                            <h5>{{$item->name}}</a></h5>
-                            <h5>Kes:{{$item->price}}</h5>
-                            <p>Quantity: {{$item->quantity}}</p>
+                            <h5>{{$item->name}}</h5>
+                            <form action="{{route('updatecart', $item->id)}}" method="post">
+                                @csrf
+                                <input name="price" class="form-control" value="Kes: {{$item->price}}" style="background:none;border: none;width: 10%; margin-bottom:3px">
+                                <h5 style="margin-bottom: 3px;">Quantity:</h5>
+                                <input name="id" type="hidden" value="{{$item->id}}">
+                                <input name="quantity" class="form-control" value="{{$item->quantity}}" style="width: 10%; margin-bottom:3px">
+                                <button type="submit" style="color:aliceblue;border: none; background-color:#2cbc85; border-radius:17px; padding:5px;">
+                                    Update
+                                </button>
+                            </form>
                         </div>
-                        <form method="post" action="{{route('addupdate', $item->id)}}">
-                            <button type="submit" style="border: none; background:none;">
-                                <i class="bi bi-plus"></i>
-                            </button>
-                        </form>
-                        <form method="post" action="{{route('minusupdate', $item->id)}}">
-                            <button type="submit" style="border: none; background:none;">
-                                <i class="bi bi-dash"></i>
-                            </button>
-                        </form>
-
                         <a href="{{route('removefromcart',$item->id)}}">
                             <i class="bi bi-trash"></i>
                         </a>
@@ -59,9 +57,13 @@
     <div class="page-header d-flex align-items-center">
         <div class="container position-relative">
             <div class="row d-flex justify-content-left">
-                <div class="col-lg-4 text-left">
-                    <a class="cta-btn" href="contact.html">Checkout</a>
-                    <a class="clearcart" href="contact.html">Clear Cart</a>
+                <h5>Total: Kes: {{ Cart::getTotal() }} </h5>
+                <div class="col-lg-4 text-left" >
+                    <a class="cta-btn" href="{{route('checkout')}}">Checkout</a>
+                    <form class="d-inline" action="{{route('clearcart')}}" method="post">
+                        @csrf
+                        <button style="border: none;" type="submit" class="clearcart">Clear Cart</button>
+                    </form>
                 </div>
             </div>
         </div>
