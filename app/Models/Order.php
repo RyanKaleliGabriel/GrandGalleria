@@ -13,10 +13,13 @@ class Order extends Model
 
     protected $fillable =
     [
-        'shop_id',
-        'customer_id'
+        'shop_id','status','amount'
     ];
 
+    public function orderproduct():HasMany
+    {
+        return $this->hasMany(Orderproduct::class);
+    }
     public function transaction(): HasMany
     {
         return $this->hasMany(Transaction::class);

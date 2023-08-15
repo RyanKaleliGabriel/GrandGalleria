@@ -8,8 +8,14 @@
             <div class="col-lg-6 text-left">
                 <h5 style="color: #27a776;">M-Pesa Payment</h5>
                 <p style="color: black;"></p>
-                <form action="post">
-                    <input style="width: 50%; margin-bottom:10px;" class="form-control" placeholder="Enter your Phone Number">
+                <form action="{{route('pay')}}" method="post">
+                    @csrf
+                    <input type="hidden" value="{{$shop->id}}" name="shop_id">
+                    <input type="hidden" name="amount" value="{{Cart::getTotal()}}">
+                    <input type="hidden" name="order_id" value="{{$order->id}}">
+                    <input type="hidden" name="amount" value="{{Cart::getTotal()}}">
+                    <input type="hidden" name="cartcontent" value="{{Cart::getContent()}}">
+                    <input style="width: 50%; margin-bottom:10px;" name="phone" class="form-control" placeholder="Enter your Phone Number">
                     <button style="border: none;" type="submit" class="clearcart" href="contact.html">Pay</button>
                 </form>
             </div>

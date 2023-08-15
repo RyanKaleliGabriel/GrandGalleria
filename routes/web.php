@@ -65,6 +65,7 @@ Route::post('addtocart', [FreshMart::class, 'addtocart'])->name('addtocart');
 Route::get('removefromcart/{item}', [FreshMart::class, 'removefromcart'])->name('removefromcart');
 Route::post('updatecart/{item}', [FreshMart::class, 'updatecart'])->name('updatecart');
 Route::post('clearcart', [FreshMart::class, 'clearcart'])->name('clearcart');
-Route::get('checkout', [FreshMart::class, 'checkout'])->name('checkout');
+Route::post('checkout', [FreshMart::class, 'checkout'])->name('checkout');
+Route::post('pay', [FreshMart::class,  'pay'])->name('pay');
 
 

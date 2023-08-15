@@ -23,7 +23,6 @@
                 </div><!-- End Service Item -->
                 @else
                 @foreach($cart as $item)
-
                 <div class="col-xl-12 col-md-6 d-flex">
                     <div class="cart service-item position-relative">
                         <img src="{{ url('product_images/'.$item->attributes->image)}}" alt="" height="50" width="50" class="rounded-circle">
@@ -38,6 +37,9 @@
                                 <button type="submit" style="color:aliceblue;border: none; background-color:#2cbc85; border-radius:17px; padding:5px;">
                                     Update
                                 </button>
+                                @error('quantity')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
                             </form>
                         </div>
                         <a href="{{route('removefromcart',$item->id)}}">
@@ -58,8 +60,14 @@
         <div class="container position-relative">
             <div class="row d-flex justify-content-left">
                 <h5>Total: Kes: {{ Cart::getTotal() }} </h5>
-                <div class="col-lg-4 text-left" >
-                    <a class="cta-btn" href="{{route('checkout')}}">Checkout</a>
+                <div class="col-lg-4 text-left">
+                    <form class="d-inline" action="{{route('checkout')}}" method="post">
+                        @csrf
+                        <input type="hidden" value="{{$shop->id}}" name="shop_id">
+                        <input type="hidden" value="{{Cart::getTotal()}}" name="amount">
+                        <button class="cta-btn" href="{{route('checkout')}}">Checkout</>
+                    </form>
+
                     <form class="d-inline" action="{{route('clearcart')}}" method="post">
                         @csrf
                         <button style="border: none;" type="submit" class="clearcart">Clear Cart</button>
